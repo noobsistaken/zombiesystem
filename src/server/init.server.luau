@@ -14,8 +14,7 @@ local Knit = require(ReplicatedStorage.Packages.Knit)
 -- ADD SERVICES
 --------------------------------------------------------------------------------
 
--- Services are loaded by Knit.AddServices from the Services folder
--- Note: init.server.luau becomes the Script, so Services is a child of `script`
+
 local ServicesFolder = script:FindFirstChild("Services")
 
 if ServicesFolder then

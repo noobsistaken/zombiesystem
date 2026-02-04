@@ -13,8 +13,7 @@ local Knit = require(ReplicatedStorage.Packages.Knit)
 --------------------------------------------------------------------------------
 -- ADD CONTROLLERS
 --------------------------------------------------------------------------------
--- Controllers are loaded by Knit.AddControllers
--- Note: init.client.luau becomes the Script, so Controllers is a child of `script`
+
 local ControllersFolder = script:FindFirstChild("Controllers")
 
 if ControllersFolder then
