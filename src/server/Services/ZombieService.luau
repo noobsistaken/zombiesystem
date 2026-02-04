@@ -351,7 +351,7 @@ function ZombieService:KnitStart()
 
     RunService.Heartbeat:Connect(Heartbeat)
 
-    -- Debug Logger (Portfolio Proof)
+    -- debug logger
     task.spawn(function()
         while true do
             task.wait(3)
