@@ -27,13 +27,13 @@ export type ZombieVisual = {
 
 export type NetworkPacket = {
     P: Vector3,
-    V: Vector3,
     H: number,
 }
 
 local Config = GameConfig.Zombies
 local LERP_SPEED = 15
 local NETWORK_TIMEOUT = 5.0
+local SNAPSHOT_INTERVAL = 0.1
 
 ----------------------------------------------------------------
 
@@ -156,7 +156,6 @@ local function OnSnapshot(snapshot: {[number]: NetworkPacket})
     for id, packet in snapshot do
         receivedCount += 1
         local position = packet.P
-        local velocity = packet.V
         local health = packet.H
 
         if LocalKills[id] then
@@ -180,8 +179,21 @@ local function OnSnapshot(snapshot: {[number]: NetworkPacket})
 
         -- Zombie is alive
         if visual then
+            -- Infer velocity from position delta
+            local timeDelta = now - visual.LastSeen
+            if timeDelta > 0.01 and timeDelta < 1.0 then
+                local rawVelocity = (position - visual.TargetPos) / timeDelta
+                -- Clamp to prevent flying (max ~50 studs/sec)
+                if rawVelocity.Magnitude > 50 then
+                    visual.Velocity = rawVelocity.Unit * 50
+                else
+                    visual.Velocity = rawVelocity
+                end
+            else
+                visual.Velocity = Vector3.zero
+            end
+            
             visual.TargetPos = position
-            visual.Velocity = velocity
             visual.LastSeen = now
             visual.IsNew = false
             visual.IsDead = false
@@ -192,7 +204,7 @@ local function OnSnapshot(snapshot: {[number]: NetworkPacket})
             if newVisual then
                 newVisual.TargetPos = position
                 newVisual.CurrentPos = position
-                newVisual.Velocity = velocity
+                newVisual.Velocity = Vector3.zero
                 newVisual.LastSeen = now
                 newVisual.IsNew = true
                 newVisual.IsDead = false

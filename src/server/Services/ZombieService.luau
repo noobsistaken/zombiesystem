@@ -215,14 +215,12 @@ local function BuildSnapshot(): {[number]: NetworkPacket}
         if zombie.Health > 0 then
             snapshot[id] = {
                 P = zombie.Position,
-                V = zombie.Velocity,
                 H = 1,
             }
         elseif zombie.DeathTime and (now - zombie.DeathTime) < DEAD_BROADCAST_TIME then
             -- broadcast death for 1s
             snapshot[id] = {
                 P = zombie.Position,
-                V = Vector3.zero,
                 H = 0,
             }
         end
