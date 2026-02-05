@@ -22,6 +22,7 @@ export type ZombieData = {
     Velocity: Vector3,
     Health: number,
     DeathTime: number?,
+    JustSpawned: boolean?,
 }
 
 export type NetworkPacket = {
@@ -51,6 +52,7 @@ local grid: {[string]: {ZombieData}} = {}
 
 local SNAPSHOT_INTERVAL = 0.1
 local lastSnapshotTime = 0
+local frameCounter = 0
 
 local RESPAWN_DELAY = 3.0
 local RespawnQueue: {number} = {}
@@ -163,6 +165,7 @@ function ZombieService:SpawnZombie(position: Vector3?): ZombieData?
         Velocity = Vector3.zero,
         Health = 1,
         DeathTime = nil,
+        JustSpawned = true,
     }
 
     NextId += 1
@@ -218,7 +221,6 @@ local function BuildSnapshot(): {[number]: NetworkPacket}
                 H = 1,
             }
         elseif zombie.DeathTime and (now - zombie.DeathTime) < DEAD_BROADCAST_TIME then
-            -- broadcast death for 1s
             snapshot[id] = {
                 P = zombie.Position,
                 H = 0,
