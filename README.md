@@ -17,6 +17,9 @@ A high-performance zombie survival game featuring a custom entity system capable
 *   **Mouse:** Look/Aim
 *   **Left Click:** Shoot
 
+# High-Performance Zombie Swarm
+[Click here to watch on Medal.tv](https://medal.tv/games/roblox-studio/clips/m41QSoqewwJI6mPUi?invite=cr-MSxCdVgsMTczMzU0NDEz&v=61)
+
 ## Setup
 
 1.  Open the project in Roblox Studio (via Rojo).
