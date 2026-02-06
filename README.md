@@ -9,7 +9,7 @@ A high-performance zombie survival game featuring a custom entity system capable
 *   **Custom Entity Engine:** Uses spatial hashing and steering behaviors instead of default Humanoids for max performance.
 *   **Client-Side Rendering:** Server handles data, client handles visuals (BulkMoveTo) to save bandwidth.
 *   **Optimized Networking:** 10Hz snapshot interpolation system.
-*   **Lag Free:** ~6% client CPU, ~8% server CPU (avg) with 200 zombies.
+*   **Lag Free:** ~6% client CPU, ~10% server CPU (avg) with 200 zombies.
 
 ## Controls
 
