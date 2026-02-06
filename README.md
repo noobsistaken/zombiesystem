@@ -18,7 +18,7 @@ A high-performance zombie survival game featuring a custom entity system capable
 *   **Left Click:** Shoot
 
 # High-Performance Zombie Swarm
-[Click here to watch on Medal.tv](https://medal.tv/games/roblox-studio/clips/m41QSoqewwJI6mPUi?invite=cr-MSxCdVgsMTczMzU0NDEz&v=61)
+[Watch on YouTube](https://youtu.be/4DUHov4aRN4)
 
 ## Setup
 
